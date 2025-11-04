@@ -1,4 +1,4 @@
-/* ==== RESET & GLOBAL ==== */
+
 * {
     margin: 0;
     padding: 0;
@@ -24,14 +24,14 @@ body {
     overflow-x: hidden;
 }
 
-/* ==== CONTAINER ==== */
+
 .container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
 }
 
-/* ==== HERO SECTION ==== */
+
 #home {
     min-height: 100vh;
     display: flex;
@@ -62,7 +62,7 @@ body {
     opacity: 0.8;
 }
 
-/* ==== BUTTONS ==== */
+
 .btn-group {
     display: flex;
     gap: 20px;
@@ -105,7 +105,7 @@ body {
     left: 0;
 }
 
-/* ==== SECTION STRUCTURE ==== */
+
 section {
     padding: 100px 0;
     min-height: 50vh;
@@ -119,7 +119,7 @@ section {
     text-shadow: 0 0 5px var(--neon-blue);
 }
 
-/* ==== ABOUT ==== */
+
 #about p {
     font-size: clamp(1rem, 2vw, 1.2rem);
     line-height: 1.8;
@@ -128,7 +128,7 @@ section {
     text-align: center;
 }
 
-/* ==== SKILLS ==== */
+
 #skills {
     background: linear-gradient(180deg, var(--black) 0%, #0a0a0a 100%);
 }
@@ -163,7 +163,7 @@ section {
     transform: translateX(5px);
 }
 
-/* ==== PORTFOLIO ==== */
+
 .projects-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -205,7 +205,7 @@ section {
     margin-top: 10px;
 }
 
-/* ==== CONTACT ==== */
+
 #contact {
     background: linear-gradient(180deg, var(--black) 0%, #0a0a0a 100%);
     text-align: center;
@@ -226,7 +226,7 @@ section {
     margin: 10px 0;
 }
 
-/* ==== FOOTER ==== */
+
 footer {
     padding: 30px 0;
     text-align: center;
@@ -236,7 +236,7 @@ footer {
     text-shadow: 0 0 3px var(--neon-blue);
 }
 
-/* ==== EFFECTS ==== */
+
 @keyframes glitchText {
     0%, 90%, 100% { transform: translate(0); }
     92% { transform: translate(-2px, 2px); }
@@ -264,10 +264,10 @@ footer {
     60% { transform: translateX(-50%) translateY(-5px); }
 }
 
-/* Hide default audio element */
+
 audio { display: none; }
 
-/* ==== GLITCH EFFECT ==== */
+
 .glitch {
     animation: glitch 0.1s infinite;
 }
