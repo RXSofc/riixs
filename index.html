@@ -6,14 +6,23 @@
     <title>ＲＩＩＸＳ４Ｋ</title>
     <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
     <style>
-        * {margin: 0; padding: 0; box-sizing: border-box;}
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         :root {
             --black: #000000;
             --neon-blue: #FF3131;
             --text-gray: #b0b0b0;
             --glow: 0 0 10px var(--neon-blue), 0 0 20px var(--neon-blue);
         }
-        html {scroll-behavior: smooth;}
+
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             background: var(--black);
             color: var(--text-gray);
@@ -21,127 +30,267 @@
             line-height: 1.6;
             overflow-x: hidden;
         }
-        .container {max-width: 1200px; margin: 0 auto; padding: 0 20px;}
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Hero Section */
         #home {
             min-height: 100vh;
-            display: flex; align-items: center; justify-content: center;
-            text-align: center; position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
         }
+
         .hero-content h1 {
             font-size: clamp(2.5rem, 8vw, 5rem);
-            color: var(--neon-blue); text-shadow: var(--glow);
-            margin-bottom: 10px; animation: glitchText 3s infinite;
+            color: var(--neon-blue);
+            text-shadow: var(--glow);
+            margin-bottom: 10px;
+            animation: glitchText 3s infinite;
         }
+
         .hero-content h2 {
             font-size: clamp(1rem, 3vw, 1.5rem);
-            color: var(--text-gray); margin-bottom: 20px; font-weight: 400;
+            color: var(--text-gray);
+            margin-bottom: 20px;
+            font-weight: 400;
         }
-        .tagline {font-size: clamp(0.9rem, 2vw, 1.1rem); margin-bottom: 40px; opacity: 0.8;}
-        .btn-group {display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;}
+
+        .tagline {
+            font-size: clamp(0.9rem, 2vw, 1.1rem);
+            margin-bottom: 40px;
+            opacity: 0.8;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
         .btn {
-            padding: 15px 40px; background: transparent;
-            color: var(--neon-blue); border: 2px solid var(--neon-blue);
-            text-decoration: none; font-family: 'Share Tech Mono', monospace;
-            font-size: 1rem; cursor: pointer; position: relative; overflow: hidden;
+            padding: 15px 40px;
+            background: transparent;
+            color: var(--neon-blue);
+            border: 2px solid var(--neon-blue);
+            text-decoration: none;
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 1rem;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
             transition: all 0.3s ease;
         }
-        .btn:hover {color: var(--black); box-shadow: var(--glow);}
+
+        .btn:hover {
+            color: var(--black);
+            box-shadow: var(--glow);
+        }
+
         .btn::before {
-            content: ''; position: absolute; top: 0; left: -100%;
-            width: 100%; height: 100%; background: var(--neon-blue);
-            transition: left 0.3s ease; z-index: -1;
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--neon-blue);
+            transition: left 0.3s ease;
+            z-index: -1;
         }
-        .btn:hover::before {left: 0;}
-        section {padding: 100px 0; min-height: 50vh;}
+
+        .btn:hover::before {
+            left: 0;
+        }
+
+        section {
+            padding: 100px 0;
+            min-height: 50vh;
+        }
+
         .section-title {
-            font-size: clamp(2rem, 5vw, 3rem); color: var(--neon-blue);
-            margin-bottom: 40px; text-align: center; text-shadow: 0 0 5px var(--neon-blue);
+            font-size: clamp(2rem, 5vw, 3rem);
+            color: var(--neon-blue);
+            margin-bottom: 40px;
+            text-align: center;
+            text-shadow: 0 0 5px var(--neon-blue);
         }
+
         #about p {
-            font-size: clamp(1rem, 2vw, 1.2rem); line-height: 1.8;
-            max-width: 800px; margin: 0 auto; text-align: center;
+            font-size: clamp(1rem, 2vw, 1.2rem);
+            line-height: 1.8;
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
         }
-        #skills {background: linear-gradient(180deg, var(--black) 0%, #0a0a0a 100%);}
+
+        #skills {
+            background: linear-gradient(180deg, var(--black) 0%, #0a0a0a 100%);
+        }
+
         .skills-list {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px; max-width: 900px; margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            max-width: 900px;
+            margin: 0 auto;
         }
+
         .skill-item {
-            padding: 20px; background: rgba(255, 49, 49, 0.05);
-            border: 1px solid rgba(255, 49, 49, 0.3);
-            border-radius: 5px; transition: all 0.3s ease; position: relative;
+            padding: 20px;
+            background: rgba(0, 172, 252, 0.05);
+            border: 1px solid rgba(0, 172, 252, 0.3);
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            position: relative;
         }
+
         .skill-item::before {
-            content: '▹'; color: var(--neon-blue); margin-right: 10px; font-size: 1.2rem;
+            content: '▹';
+            color: var(--neon-blue);
+            margin-right: 10px;
+            font-size: 1.2rem;
         }
+
         .skill-item:hover {
             border-color: var(--neon-blue);
-            box-shadow: 0 0 15px rgba(255, 49, 49, 0.3);
+            box-shadow: 0 0 15px rgba(0, 172, 252, 0.3);
             transform: translateX(5px);
         }
+
         .projects-grid {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px; max-width: 1000px; margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1000px;
+            margin: 0 auto;
         }
+
         .project-card {
-            background: rgba(255, 49, 49, 0.05);
-            border: 1px solid rgba(255, 49, 49, 0.3);
-            border-radius: 10px; padding: 30px;
-            transition: all 0.3s ease; position: relative; overflow: hidden;
+            background: rgba(0, 172, 252, 0.05);
+            border: 1px solid rgba(0, 172, 252, 0.3);
+            border-radius: 10px;
+            padding: 30px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
         }
+
         .project-card:hover {
-            border-color: var(--neon-blue); box-shadow: var(--glow); transform: translateY(-5px);
+            border-color: var(--neon-blue);
+            box-shadow: var(--glow);
+            transform: translateY(-5px);
         }
-        .project-card h3 {color: var(--neon-blue); font-size: 1.5rem; margin-bottom: 15px;}
-        .project-card p {margin-bottom: 15px; line-height: 1.6;}
-        .project-meta {font-size: 0.9rem; opacity: 0.7; margin-top: 10px;}
-        #contact {background: linear-gradient(180deg, var(--black) 0%, #0a0a0a 100%); text-align: center;}
-        .contact-info {max-width: 600px; margin: 0 auto 40px; font-size: 1.1rem;}
-        .contact-details {margin: 30px 0; font-size: 1rem;}
-        .contact-details p {margin: 10px 0;}
+
+        .project-card h3 {
+            color: var(--neon-blue);
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+
+        .project-card p {
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+
+        .project-meta {
+            font-size: 0.9rem;
+            opacity: 0.7;
+            margin-top: 10px;
+        }
+
+        #contact {
+            background: linear-gradient(180deg, var(--black) 0%, #0a0a0a 100%);
+            text-align: center;
+        }
+
+        .contact-info {
+            max-width: 600px;
+            margin: 0 auto 40px;
+            font-size: 1.1rem;
+        }
+
+        .contact-details {
+            margin: 30px 0;
+            font-size: 1rem;
+        }
+
+        .contact-details p {
+            margin: 10px 0;
+        }
+
         footer {
-            padding: 30px 0; text-align: center;
-            border-top: 1px solid rgba(255, 49, 49, 0.2);
-            font-size: 0.9rem; color: var(--neon-blue);
+            padding: 30px 0;
+            text-align: center;
+            border-top: 1px solid rgba(0, 172, 252, 0.2);
+            font-size: 0.9rem;
+            color: var(--neon-blue);
             text-shadow: 0 0 3px var(--neon-blue);
         }
+
         @keyframes glitchText {
             0%, 90%, 100% { transform: translate(0); }
             92% { transform: translate(-2px, 2px); }
             94% { transform: translate(2px, -2px); }
             96% { transform: translate(-2px, -2px); }
         }
+
         .scroll-indicator {
-            position: absolute; bottom: 30px; left: 50%;
-            transform: translateX(-50%); animation: bounce 2s infinite;
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
         }
+
         .scroll-indicator::before {
-            content: '⛧'; color: var(--neon-blue); font-size: 2.5rem;
+            content: '▼';
+            color: var(--neon-blue);
+            font-size: 1.5rem;
         }
+
         @keyframes bounce {
             0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
             40% { transform: translateX(-50%) translateY(-10px); }
             60% { transform: translateX(-50%) translateY(-5px); }
         }
-        audio {display: none;}
+
+    
+        audio { display: none; }
+
+      
+        .glitch {
+            animation: glitch 0.1s infinite;
+        }
+        @keyframes glitch {
+            0% { transform: translate(2px, -2px); filter: hue-rotate(45deg); }
+            25% { transform: translate(-2px, 2px); filter: hue-rotate(90deg); }
+            50% { transform: translate(2px, 2px); filter: hue-rotate(180deg); }
+            75% { transform: translate(-2px, -2px); filter: hue-rotate(270deg); }
+            100% { transform: translate(0, 0); filter: hue-rotate(360deg); }
+        }
     </style>
 </head>
 <body>
-  
-    <audio id="bgMusic" autoplay loop>
+    
+    <audio autoplay loop>
         <source src="https://od.lk/s/OV8yNTU0MDQ1NjZf/Piero%20Piccioni%20-%20Illusione%20perfetta%20-%20Carosello%20Records.mp3" type="audio/mpeg">
     </audio>
 
-  
-    <audio id="prankSound">
-        <source src="https://od.lk/s/OV8yNDgzMzg4MDBf/Prank%20sound%20desah%20halal.mp3" type="audio/mpeg">
-    </audio>
-
+    
     <section id="home">
         <div class="container">
             <div class="hero-content">
                 <h1>M Ariiq A</h1>
-                <p class="tagline">Just Building What Makes Sense</p>
+                <h2>Just Building What Makes Sense</h2>
+                <p class="tagline">Turning logic and chaos into something that works.</p>
                 <div class="btn-group">
                     <a href="#about" class="btn">About Me</a>
                     <a href="#contact" class="btn">Contact</a>
@@ -151,17 +300,23 @@
         <div class="scroll-indicator"></div>
     </section>
 
+
     <section id="about">
         <div class="container">
             <h2 class="section-title">About Me</h2>
-            <p>Hey, I’m Riq — I wire, I code, I create. I turn raw ideas into working art.</p>
+            <p>
+                Hey, I’m Riq — I wire, I code, I create. I turn raw ideas into working art.
+            </p>
         </div>
     </section>
 
-    <section id="skils">
+  
+    <section id="skills">
         <div class="container">
-            <h2 class="section-title">What I Do?</h2>
+            <h2 class="section-title">What I Do</h2>
             <div class="skills-list">
+                <div class="skill-item">Electrical Installation & Troubleshooting</div>
+                <div class="skill-item">Circuit Design & IoT Projects (ESP32, Microcontrollers)</div>
                 <div class="skill-item">Firebase & Realtime App Development</div>
                 <div class="skill-item">Web-Based Control Systems</div>
                 <div class="skill-item">Hardware Debugging & Prototyping</div>
@@ -169,6 +324,36 @@
         </div>
     </section>
 
+   
+    <section id="portfolio">
+        <div class="container">
+            <h2 class="section-title">Portfolio</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <h3>One Way Chat</h3>
+                    <p>
+                        A clean and simple realtime private chat app powered by Firebase Realtime Database.
+                    </p>
+                    <p class="project-meta">
+                        🧩 Stack: HTML, CSS, JavaScript, Firebase Realtime Database<br>
+                        ⚙ Focus: Realtime Sync, Cloud Vibes, Private Messaging
+                    </p>
+                </div>
+
+                <div class="project-card">
+                    <h3>ESP32 Live Tracker</h3>
+                    <p>
+                        An ESP32 project hooked up with the Chronos app to show real-time GPS data (latitude, longitude, altitude, speed) on an OLED display.
+                    </p>
+                    <p class="project-meta">
+                        ⚙ Focus: Realtime Data Display, IoT Integration, Smart Monitoring
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+  
     <section id="contact">
         <div class="container">
             <h2 class="section-title">Hit Me Up</h2>
@@ -177,61 +362,61 @@
             </div>
             <div class="contact-details">
                 <p>📧 Email: rxsofc@gmail.com</p>
-                <p>☎ WhatsApp: no longer available</p>
+                <p>☎ WhatsApp: +62 831-1129-5013</p>
             </div>
             <div class="btn-group">
                 <a href="mailto:rxsofc@gmail.com" class="btn">Email Me</a>
-                <a href="https://wa.me/6283111295013" target="_blank" class="btn" id="waPrank">Message on WhatsApp</a>
             </div>
+        </div>
+
+        <div class="container" style="text-align:center; margin-top:60px;">
+            <button id="prankBtn" class="btn">Message on WhatsApp</button>
+            <p style="margin-top:15px; font-size:0.9rem; opacity:0.6;"
         </div>
     </section>
 
     <footer>
         <div class="container">
-            <p>© 2025 EvilVoid | Brick By Brick By Riixxs4k</p>
+            <p>© 2025 EvilVoid | Crafted by Arx Riiqs</p>
         </div>
     </footer>
 
     <script>
-     
-        const bgMusic = document.getElementById('bgMusic');
-        bgMusic.volume = 0.4;
-        bgMusic.addEventListener('pause', () => bgMusic.play());
-        document.addEventListener('visibilitychange', () => {
-            if (document.visibilityState === 'visible') bgMusic.play();
-        });
 
-        
-        document.querySelectorAll('a[href^="#"]').forEach(a => {
-            a.addEventListener('click', e => {
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', e => {
                 e.preventDefault();
-                const target = document.querySelector(a.getAttribute('href'));
-                if (target) target.scrollIntoView({ behavior: 'smooth' });
+                const target = document.querySelector(anchor.getAttribute('href'));
+                if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
             });
         });
 
-       
         window.addEventListener('scroll', () => {
-            const hero = document.querySelector('#home');
             const scrolled = window.pageYOffset;
+            const hero = document.querySelector('#home');
             if (hero && scrolled < window.innerHeight) {
                 hero.style.transform = translateY(${scrolled * 0.5}px);
                 hero.style.opacity = 1 - (scrolled / window.innerHeight);
             }
         });
 
-        
-        const prank = document.getElementById('prankSound');
-        const waBtn = document.getElementById('waPrank');
-        if (waBtn && prank) {
-            waBtn.addEventListener('click', e => {
-                e.preventDefault();
-                prank.currentTime = 0;
-                prank.play().catch(() => {});
-                waBtn.textContent = "😈 GOTCHA!";
-                setTimeout(() => waBtn.textContent = "Message on WhatsApp", 2000);
-            });
-        }
+        const prankBtn = document.getElementById("prankBtn");
+        prankBtn.addEventListener("click", () => {
+            document.body.classList.add("glitch");
+            setTimeout(() => document.body.classList.remove("glitch"), 500);
+
+            const sound = new Audio("https://od.lk/s/OV8yNDgzMzg4MDBf/Prank%20sound%20desah%20halal.mp3");
+            sound.play().catch(() => {});
+
+            const messages = [
+                "yahahhah",
+                " ",
+                "⚡ You’ve been voided!",
+                " ",
+                "😜 Relax, it’s just a prank!"
+            ];
+            alert(messages[Math.floor(Math.random() * messages.length)]);
+        });
     </script>
 </body>
 </html>
