@@ -12,6 +12,4 @@ The project serves as a portfolio, a playground, and a statement that every circ
 ## Features
 - Neon cyber aesthetic built with pure HTML, CSS, and JavaScript  
 - Smooth scroll and parallax hero section  
-- Interactive “Message” button with a dynamic prank behavior  
-- Looping background music for immersive experience  
 - Responsive design optimized for both desktop and mobile  
