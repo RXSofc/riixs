@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TRANSMISSION 0066</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=VT323&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<canvas id="static-canvas"></canvas>
+<div id="cursor"></div>
+
+<div id="interrupt">
+  <div class="int-line" id="il1"></div>
+  <div class="int-line" id="il2"></div>
+  <div class="int-line" id="il3"></div>
+</div>
+
+<div id="boot">
+  <div class="boot-line dim"  id="bl0"></div>
+  <div class="boot-line"      id="bl1"></div>
+  <div class="boot-line dim"  id="bl2"></div>
+  <div class="boot-line"      id="bl3"></div>
+  <div class="boot-line data" id="bl4"></div>
+  <div class="boot-line hot"  id="bl5"></div>
+</div>
+
+<div id="crt">
+  <div id="flicker"></div>
+
+  <div id="hud">
+    <div class="hud-l">
+      <span class="hud-live">&#9679; EVILVOID TEAM</span>
+      <span>FREQ&nbsp;87.3 MHz</span>
+    </div>
+    <div class="hud-r">
+      <span class="hud-bars" id="hud-bars">&#9608;&#9608;&#9608;&#9608;&#9617;&#9617;&#9617;&#9617;</span>
+      <span>BANDUNG/ID</span>
+      <span id="hud-time">--:--:--</span>
+    </div>
+  </div>
+
+  
+  <section id="hero">
+    <div class="container">
+      <div class="hero-eyebrow">EV TEAM &nbsp;//&nbsp; IDENT FILE &nbsp;//&nbsp; SUBJECT-004</div>
+      <h1 class="hero-name" data-t="ARIIQ">Rixxs4k</h1>
+      <p class="hero-role">
+        <strong>Literary saya</strong>&emsp;//&emsp;amatir</p>
+      <p class="hero-bio">
+        . Based in <b>Bandung</b>.
+        kadang kidding, nge-push commit jam 2 peting.
+        Percaya bahwa <b>kata dan fungsi adalah
+        hal yang sama</b> &mdash;
+        keduanya adalah cara memerintah semesta
+        supaya obey
+      </p>
+      <div class="hero-stats">
+        <div class="h-stat">
+          <span class="h-stat-val" data-target="3">0</span>
+          <span class="h-stat-lbl">Projects Live</span>
+        </div>
+        <div class="h-stat">
+          <span class="h-stat-val" data-target="2020">0</span>
+          <span class="h-stat-lbl">Active Since</span>
+        </div>
+        <div class="h-stat">
+          <span class="h-stat-val">&#8734;</span>
+          <span class="h-stat-lbl">Words Written</span>
+        </div>
+        <div class="h-stat">
+          <span class="h-stat-val" data-target="47">0</span>
+          <span class="h-stat-lbl">Commits</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="noise-div"></div>
+
+  <section id="work">
+    <div class="container">
+      <div class="tx-hdr reveal">EV TEAM &nbsp;WORK ARCHIVE</div>
+
+      <div class="skills-strip reveal">
+        <span class="skill-tag">HTML</span>
+        <span class="skill-tag">CSS</span>
+        <span class="skill-tag">VANILLA JS</span>
+        <span class="skill-tag">NODE.JS</span>
+        <span class="skill-tag">EXPRESS</span>
+        <span class="skill-tag">FIREBASE</span>
+        <span class="skill-tag">GITHUB API</span>
+        <span class="skill-tag">BASH</span>
+        <span class="skill-tag">EVILVOID</span>
+      </div>
+
+      <div class="project-list">
+        <div class="p-card reveal">
+          <div class="p-meta">
+            <span class="p-id">FILE:001</span>
+            <span class="p-status live">&#9679; ON-GOING</span>
+          </div>
+          <div class="p-title">ESP32 JAMMER??</div>
+          <p class="p-desc">
+            Mengandalkan frekuensi yang usual dan mengacak nya. &mdash;
+            sinyal anda terganggu? saya senang karena itu tandanya berhasil.
+          </p>
+          <div class="p-stack">
+            <span class="p-tag">HTML</span>
+            <span class="p-tag">CSS</span>
+            <span class="p-tag">CPP</span>
+            <span class="p-tag">D.L.L</span>
+          </div>
+        </div>
+
+        <div class="p-card reveal">
+          <div class="p-meta">
+            <span class="p-id">FILE:002</span>
+            <span class="p-status live">&#9679; LIVE</span>
+          </div>
+          <div class="p-title">WEBCHAT ONEWAY</div>
+          <p class="p-desc">
+            Real-time public chat via Firebase
+            Realtime Database. No auth, no
+            gatekeeping &mdash; masuk, kirim
+            pesan, hilang. Lahir dari bug sync
+            yang memaksa migrasi penuh dari
+            Firestore. Architecture rethink
+            yang justru bikin produk lebih kuat.
+          </p>
+          <div class="p-stack">
+            <span class="p-tag">FIREBASE RTDB</span>
+            <span class="p-tag">VANILLA JS</span>
+            <span class="p-tag">REALTIME</span>
+          </div>
+        </div>
+
+        <div class="p-card reveal">
+          <div class="p-meta">
+            <span class="p-id">FILE:003</span>
+            <span class="p-status live">&#9679; DEAD? I GUESS</span>
+          </div>
+          <div class="p-title">GH REPO CREATOR</div>
+          <p class="p-desc">
+            Dev productivity tool. Satu klik: init lokal, create remote, push.
+            Node.js/Express backend, dark AMOLED
+            UI, canvas particle animations.
+            Plus <code style="color:var(--d)">ghi</code> 
+            bash function buat
+            yang malas
+            bahkan buka browser. Karena waktu
+            ketik itu mahal.
+          </p>
+          <div class="p-stack">
+            <span class="p-tag">NODE.JS</span>
+            <span class="p-tag">EXPRESS</span>
+            <span class="p-tag">GITHUB API</span>
+            <span class="p-tag">BASH</span>
+            <span class="p-tag">CANVAS</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="noise-div"></div>
+
+  <section id="contact">
+    <div class="container">
+      <div class="tx-hdr reveal">EV TEAM // ESTABLISH LINK // CHANNELS OPEN</div>
+      <div class="contact-grid">
+        <a href="https://github.com/RXSofc" target="_blank" rel="noopener" class="c-item reveal">
+          <span class="c-arrow">&#8599;</span>
+          <span class="c-platform">GITHUB</span>
+          <span class="c-handle">RXSofc</span>
+        </a>
+        <a href="https://instagram.com/yourhandle" target="_blank" rel="noopener" class="c-item reveal">
+          <span class="c-arrow">&#8599;</span>
+          <span class="c-platform">INSTAGRAM</span>
+          <span class="c-handle">@rixs4k</span>
+        </a>
+        <a href="https://t.me/yourhandle" target="_blank" rel="noopener" class="c-item reveal">
+          <span class="c-arrow">&#8599;</span>
+          <span class="c-platform">TELEGRAM</span>
+          <span class="c-handle">@ariq666</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="footer-inner">
+        <span>EVIL VOID TEAM</span>M.A.A</span>
+        <span class="footer-sig" id="yr">&#9619;</span>
+      </div>
+    </div>
+  </footer>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
