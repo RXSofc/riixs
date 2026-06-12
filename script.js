@@ -1,4 +1,3 @@
-/* ---- Custom Cursor ---- */
 const cursor = document.getElementById('cursor');
 const dot    = document.getElementById('cursorDot');
 let mx=0, my=0, cx=0, cy=0;
@@ -13,7 +12,6 @@ document.querySelectorAll('a,button,.skill-pill,.acc-card,.contact-btn,.btn').fo
   el.addEventListener('mouseleave', ()=> cursor.classList.remove('hover'));
 });
 
-/* ---- Accordion Project Cards ---- */
 function toggleAcc(id) {
   const item = document.getElementById(id);
   if (!item) return;
@@ -28,7 +26,6 @@ function toggleAcc(id) {
   }
 }
 
-/* ---- Scroll Reveal ---- */
 const reveals = document.querySelectorAll('.reveal');
 const observer = new IntersectionObserver(entries => {
   entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
@@ -86,7 +83,7 @@ sidebarLinks.forEach(link => {
   });
 });
 
-/* ---- Active sidebar link on scroll ---- */
+
 const sections = document.querySelectorAll('section[id]');
 window.addEventListener('scroll', () => {
   let current = '';
@@ -108,7 +105,6 @@ document.querySelectorAll('.skill-pill').forEach(p => {
   p.setAttribute('role', 'listitem');
 });
 
-/* ---- Sidebar link mouse tracking for ripple ---- */
 document.querySelectorAll('.sidebar-link').forEach(link => {
   link.addEventListener('mousemove', (e) => {
     const rect = link.getBoundingClientRect();
@@ -119,7 +115,6 @@ document.querySelectorAll('.sidebar-link').forEach(link => {
   });
 });
 
-/* ---- Full-page Animated Wave Grid ---- */
 (function () {
   const canvas = document.getElementById('gridCanvas');
   if (!canvas) return;
@@ -168,7 +163,6 @@ document.querySelectorAll('.sidebar-link').forEach(link => {
     ctx.clearRect(0, 0, W, H);
     t += 0.014;
 
-    /* vertical lines */
     for (let ci = 0; ci < cols; ci++) {
       ctx.beginPath();
       for (let ri = 0; ri <= rows; ri++) {
@@ -184,7 +178,6 @@ document.querySelectorAll('.sidebar-link').forEach(link => {
       ctx.stroke();
     }
 
-    /* horizontal lines */
     for (let ri = 0; ri < rows; ri++) {
       ctx.beginPath();
       for (let ci = 0; ci <= cols; ci++) {
@@ -200,7 +193,7 @@ document.querySelectorAll('.sidebar-link').forEach(link => {
       ctx.stroke();
     }
 
-    /* intersection dots */
+
     for (let ci = 0; ci < cols; ci++) {
       for (let ri = 0; ri < rows; ri++) {
         const wx = Math.cos(t * 0.7 + ci * 0.35 + ri * 0.15) * 6;
