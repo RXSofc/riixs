@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>riixs4k</title>
+<meta name="description" content="Ariiq — Building interactive digital experiences, creative interfaces, and experimental web projects.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Custom cursor -->
+<div class="cursor" id="cursor"></div>
+<div class="cursor-dot" id="cursorDot"></div>
+
+<!-- Full-page animated grid background -->
+<canvas id="gridCanvas"></canvas>
+
+<!-- ============================
+     SIDEBAR NAVIGATION
+============================ -->
+<button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
+  <span class="hamburger-line"></span>
+  <span class="hamburger-line"></span>
+  <span class="hamburger-line"></span>
+</button>
+
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+<aside class="sidebar" id="sidebar" aria-hidden="true">
+  <div class="sidebar-brand">
+    <div class="sidebar-logo">⛧⛧</div>
+    <div class="sidebar-brand-text">
+      <div class="sidebar-brand-name">ariiq</div>
+      <div class="sidebar-brand-tag">creative dev</div>
+    </div>
+    <button class="sidebar-close" id="sidebarClose" aria-label="Close sidebar">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+  </div>
+
+  <nav class="sidebar-nav">
+    <a href="#hero" class="sidebar-link active" data-section="hero">
+      <span class="sidebar-link-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></span>
+      <span class="sidebar-link-text">Home</span>
+      <span class="sidebar-link-indicator"></span>
+    </a>
+    <a href="#about" class="sidebar-link" data-section="about">
+      <span class="sidebar-link-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.58-7 8-7s8 3 8 7"/></svg></span>
+      <span class="sidebar-link-text">About</span>
+      <span class="sidebar-link-indicator"></span>
+    </a>
+    <a href="#skills" class="sidebar-link" data-section="skills">
+      <span class="sidebar-link-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></span>
+      <span class="sidebar-link-text">Skills</span>
+      <span class="sidebar-link-indicator"></span>
+    </a>
+    <a href="#projects" class="sidebar-link" data-section="projects">
+      <span class="sidebar-link-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg></span>
+      <span class="sidebar-link-text">Projects</span>
+      <span class="sidebar-link-indicator"></span>
+    </a>
+    <a href="#experience" class="sidebar-link" data-section="experience">
+      <span class="sidebar-link-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg></span>
+      <span class="sidebar-link-text">Journey</span>
+      <span class="sidebar-link-indicator"></span>
+    </a>
+    <a href="#contact" class="sidebar-link" data-section="contact">
+      <span class="sidebar-link-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></span>
+      <span class="sidebar-link-text">Contact</span>
+      <span class="sidebar-link-indicator"></span>
+    </a>
+  </nav>
+
+  <div class="sidebar-footer">
+    <div class="sidebar-social">
+      <a href="https://github.com/RXSofc" target="_blank" aria-label="GitHub">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"/></svg>
+      </a>
+      <a href="https://linkedin.com" target="_blank" aria-label="LinkedIn">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+      </a>
+      <a href="https://wa.me/6283111295013" target="_blank" aria-label="WhatsApp">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+      </a>
+    </div>
+    <div class="sidebar-credit">© 2025 EV Team</div>
+  </div>
+</aside>
+
+<!-- ============================
+     HERO
+============================ -->
+<section id="hero">
+  <div class="hero-bg-pattern"></div>
+  <div class="hero-deco hero-deco-1"></div>
+  <div class="hero-deco hero-deco-2"></div>
+  <div class="hero-deco hero-deco-3"></div>
+  <div class="hero-deco hero-deco-4"></div>
+  <div class="hero-deco hero-deco-5"></div>
+
+  <div class="container" style="width:100%">
+    <div class="hero-main-card">
+
+      <div>
+        <div class="avatar-card">
+          <div class="card-badge"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>EV Team</div>
+          <div class="card-serial">#004</div>
+          <div class="avatar-wrap">
+            <div class="avatar-img-wrap">
+            <img src="assets/avatar.jpg" alt="Ariiq — Creative Developer" loading="eager" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <div class="avatar-fallback" style="display:none;align-items:center;justify-content:center;width:100%;height:100%;">
+              <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.58-7 8-7s8 3 8 7"/><path d="M8 12l-2 2 2 2M16 12l2 2-2 2M11 14h2"/></svg>
+            </div>
+          </div>
+            <div class="avatar-name-plate">Rixs4k• RXSOFC</div>
+          </div>
+          <div class="avatar-stats">
+            <div class="avatar-stat"><span class="stat-val">4+</span><span class="stat-lbl">Years</span></div>
+            <div class="avatar-stat"><span class="stat-val">∞</span><span class="stat-lbl">Ideas</span></div>
+            <div class="avatar-stat"><span class="stat-val">EV</span><span class="stat-lbl">Team</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-content">
+        <div class="hero-tag">
+          <span class="dot"></span>
+          Have an idea?
+        </div>
+        <p class="hero-sub">↳ Front-End Developer</p>
+        <h1 class="hero-h1">
+          Hi, I'm <span class="accent-underline">Ariiq</span>.<br>
+          I build and<br>
+          <span class="accent-underline">?</span>.
+        </h1>
+        <p class="hero-p">
+          Building interactive digital experiences, creative interfaces, and experimental web projects.(amatir).
+        </p>
+        <div class="hero-actions">
+          <a href="#projects" class="btn btn-primary">View Projects <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          <a href="#contact" class="btn btn-secondary">Contact Me <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="marquee-strip">
+    <div class="marquee-inner" aria-hidden="true">
+      <span class="marquee-item">Web Experiments</span>
+      <span class="marquee-item">EV Team</span>
+      <span class="marquee-item">Bandung, Indonesia</span>
+      <span class="marquee-item">Open to Work</span>
+      <span class="marquee-item">Web Experiments</span>
+      <span class="marquee-item">EV Team</span>
+      <span class="marquee-item">Bandung, Indonesia</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============================
+     ABOUT
+============================ -->
+<section id="about">
+  <div class="container">
+    <div class="section-label reveal"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.58-7 8-7s8 3 8 7"/></svg> About Me</div>
+    <div class="about-grid">
+
+      <div class="card about-card-1 reveal">
+        <h2 class="about-h2">Who is this guy?</h2>
+        <p class="about-p">
+         Hii I'm Ariiq — a front-end developer (amatir), based in Bandung. I operate under
+          the <strong>Evil Void Team (EV TEAM)</strong> brand on GitHub as <strong>RXSofc</strong>.
+        </p>
+        <br>
+        <p class="about-p">
+          Lately, I've been really into the Modern Soft Brutalism. It's a mix of: Neobrutalism, Neumorphism, Bento Grid layouts, Editorial design, Minimal Swiss design
+        </p>
+      </div>
+
+      <div class="card about-card-2 reveal reveal-delay-2">
+        <h2 class="about-h2">Quick Facts</h2>
+        <ul class="fact-list">
+          <li class="fact-item">
+            <span class="fact-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg></span>
+            <div><div class="fact-label">Education</div><div class="fact-val">S3. sd,smp,smk</div></div>
+          </li>
+          <li class="fact-item">
+            <span class="fact-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg></span>
+            <div><div class="fact-label">Favorite Stack</div><div class="fact-val">HTML · CSS · JS · Firebase</div></div>
+          </li>
+          <li class="fact-item">
+            <span class="fact-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3h6M10 3v7l-4 8h12l-4-8V3"/></svg></span>
+            <div><div class="fact-label">Currently Learning</div><div class="fact-val">React · Node.js · IoT</div></div>
+          </li>
+          <li class="fact-item">
+            <span class="fact-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg></span>
+            <div><div class="fact-label">Brand / GitHub</div><div class="fact-val">EV Team · @RXSofc</div></div>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================
+     SKILLS
+============================ -->
+<section id="skills">
+  <div class="container">
+    <div class="section-label reveal"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg> Skills</div>
+    <h2 class="skills-h2 reveal">My <span style="color:var(--accent)">Weapons</span><br>of Choice</h2>
+    <div class="skills-grid reveal">
+      <span class="skill-pill sp-sage"><span class="skill-emoji"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></span>HTML5</span>
+      <span class="skill-pill sp-blue-gray"><span class="skill-emoji"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="13.5" cy="6.5" r=".5" fill="currentColor"/><circle cx="17.5" cy="10.5" r=".5" fill="currentColor"/><circle cx="8.5" cy="7.5" r=".5" fill="currentColor"/><circle cx="6.5" cy="12.5" r=".5" fill="currentColor"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"/></svg></span>CSS3</span>
+      <span class="skill-pill sp-cream"><span class="skill-emoji"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg></span>JavaScript</span>
+      <span class="skill-pill sp-mint"><span class="skill-emoji"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="1" fill="currentColor"/><path d="M12 6.5c5.523 0 10 2.462 10 5.5s-4.477 5.5-10 5.5S2 14.538 2 12s4.477-5.5 10-5.5z"/><path d="M8 8.5c2.761-4.782 6.505-7.5 9.33-6.33C20.155 3.34 20.73 8.11 18.66 13c-2.07 4.89-5.814 8.13-8.64 6.96-2.825-1.17-3.4-5.94-1.33-10.83"/></svg></span>React</span>
+      <span class="skill-pill sp-sage"><span class="skill-emoji"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span>Node.js</span>
+      <span class="skill-pill sp-lavender"><span class="skill-emoji"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2c0 0-7 6-7 12a7 7 0 0 0 14 0c0-6-7-12-7-12zM9.5 15.5c.83 1.17 2.5 1.5 2.5 1.5s1.67-.33 2.5-1.5"/></svg></span>Firebase</span>
+      <span class="skill-pill sp-blue-gray"><span class="skill-emoji"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg></span>Git / GitHub</span>
+      <span class="skill-pill sp-cream"><span class="skill-emoji"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/><circle cx="8" cy="10" r="1" fill="currentColor"/><circle cx="12" cy="10" r="1" fill="currentColor"/><circle cx="16" cy="10" r="1" fill="currentColor"/></svg></span>ESP32 / IoT</span>
+      <span class="skill-pill sp-mint"><span class="skill-emoji"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10"/><path d="M14.5 9.5 9 15M8 12l4-4 3 3-4 4-3-3z"/><path d="M22 22v-3a2 2 0 0 0-4 0v3"/><path d="M18 19h4"/></svg></span>Figma</span>
+      <span class="skill-pill sp-lavender"><span class="skill-emoji"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/><path d="M9 8h6M9 11h6"/></svg></span>PHP</span>
+      <span class="skill-pill sp-sage"><span class="skill-emoji"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5M12 22V12"/></svg></span>Express.js</span>
+      <span class="skill-pill sp-blue-gray"><span class="skill-emoji"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><line x1="10" y1="9" x2="8" y2="9"/></svg></span>Markdown</span>
+      <span class="skill-pill sp-lavender"><span class="skill-emoji"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/><circle cx="9" cy="10" r="1.5" fill="currentColor"/><circle cx="15" cy="10" r="1.5" fill="currentColor"/></svg></span>WebGL</span>
+      <span class="skill-pill sp-cream"><span class="skill-emoji"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22v-5"/><path d="M9 8V2"/><path d="M15 8V2"/><rect x="6" y="8" width="12" height="9" rx="2"/><path d="M9 13h6"/></svg></span>REST API</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============================
+     PROJECTS
+============================ -->
+<section id="projects">
+  <div class="container">
+    <div class="section-label reveal"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 14l-4-4h3V8h2v4h3l-4 4z"/></svg> Projects</div>
+    <h2 class="projects-h2 reveal">
+      Things I've <span style="color:var(--accent)">Actually</span> Built
+    </h2>
+
+    <div class="acc-hint reveal">
+      <div class="acc-hint-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg></div>
+      Tap atau klik kartu buat buka detail project
+    </div>
+
+    <div class="acc-list">
+
+      <div class="acc-item reveal" id="ac1">
+        <div class="acc-float">
+          <div class="acc-card" onclick="toggleAcc('ac1')">
+            <div class="acc-tab"><span class="acc-tab-dot"></span>EV Team Project</div>
+            <div class="acc-header">
+              <span class="acc-num">01</span>
+              <span class="acc-divider"></span>
+              <div class="acc-header-text">
+                <div class="acc-name">Void.Chat</div>
+                <span class="acc-cat-pill"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg> Chat App</span>
+              </div>
+              <div class="acc-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></div>
+            </div>
+            <div class="acc-body-wrap">
+              <div class="acc-body-inner">
+                <div class="acc-body">
+                  <div class="acc-body-top">
+                    <div class="acc-emoji-wrap"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+                    <div class="acc-desc-block">
+                      <div class="acc-desc-title">Void.Chat</div>
+                      <p class="acc-desc">Multi-user real-time chat app dengan estetika Indonesian slang. Dimulai sebagai konsep one-way "messages to the void", berkembang menjadi chat lengkap dengan username onboarding, heartbeat presence detection, dan polling-based sync. AMOLED dark UI, Firebase Realtime DB backend.</p>
+                    </div>
+                  </div>
+                  <div class="acc-stack">
+                    <span class="acc-stack-tag">HTML/CSS/JS</span>
+                    <span class="acc-stack-tag">Firebase Realtime DB</span>
+                    <span class="acc-stack-tag">Polling Sync</span>
+                    <span class="acc-stack-tag">AMOLED UI</span>
+                  </div>
+                  <div class="acc-actions">
+                    <a href="#" class="acc-btn ab-demo" onclick="event.stopPropagation()">Live Demo ↗</a>
+                    <a href="https://github.com/RXSofc" target="_blank" class="acc-btn ab-gh" onclick="event.stopPropagation()">GitHub →</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="acc-item reveal reveal-delay-1" id="ac2">
+        <div class="acc-float">
+          <div class="acc-card" onclick="toggleAcc('ac2')">
+            <div class="acc-tab"><span class="acc-tab-dot"></span>Dev Tool</div>
+            <div class="acc-header">
+              <span class="acc-num">02</span>
+              <span class="acc-divider"></span>
+              <div class="acc-header-text">
+                <div class="acc-name">GH Repo Creator</div>
+                <span class="acc-cat-pill"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg> CLI Tool</span>
+              </div>
+              <div class="acc-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></div>
+            </div>
+            <div class="acc-body-wrap">
+              <div class="acc-body-inner">
+                <div class="acc-body">
+                  <div class="acc-body-top">
+                    <div class="acc-emoji-wrap"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg></div>
+                    <div class="acc-desc-block">
+                      <div class="acc-desc-title">GH Repo Creator</div>
+                      <p class="acc-desc">CLI tool dibangun dengan Node.js dan Express yang wraps GitHub API untuk scaffold dan push repository baru langsung dari terminal. Input nama repo, visibility, deskripsi — selesai. Tidak ada browser, tidak ada klik. Pure terminal workflow buat developer yang menghargai waktu mereka sendiri.</p>
+                    </div>
+                  </div>
+                  <div class="acc-stack">
+                    <span class="acc-stack-tag">Node.js</span>
+                    <span class="acc-stack-tag">Express.js</span>
+                    <span class="acc-stack-tag">GitHub API</span>
+                    <span class="acc-stack-tag">CLI / Bash</span>
+                  </div>
+                  <div class="acc-actions">
+                    <a href="https://github.com/RXSofc" target="_blank" class="acc-btn ab-gh" onclick="event.stopPropagation()">GitHub →</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="acc-item reveal reveal-delay-2" id="ac3">
+        <div class="acc-float">
+          <div class="acc-card" onclick="toggleAcc('ac3')">
+            <div class="acc-tab"><span class="acc-tab-dot"></span>Digital Invitation</div>
+            <div class="acc-header">
+              <span class="acc-num">03</span>
+              <span class="acc-divider"></span>
+              <div class="acc-header-text">
+                <div class="acc-name">Walimatul Khitan</div>
+                <span class="acc-cat-pill"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 22V9l9-7 9 7v13H3z"/><path d="M9 22V12h6v10"/></svg> Digital Invite</span>
+              </div>
+              <div class="acc-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></div>
+            </div>
+            <div class="acc-body-wrap">
+              <div class="acc-body-inner">
+                <div class="acc-body">
+                  <div class="acc-body-top">
+                    <div class="acc-emoji-wrap"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 22V9l9-7 9 7v13H3z"/><path d="M9 22V12h6v10"/><path d="M12 2v7"/></svg></div>
+                    <div class="acc-desc-block">
+                      <div class="acc-desc-title">Walimatul Khitan — Digital Invite</div>
+                      <p class="acc-desc">Islamic celebration digital invitation dengan neobrutalist pixel aesthetic. Typography Cormorant Garamond × Inter, real photo gallery, background audio, OG meta tags, Google Maps embed untuk venue di Bandung Barat. Countdown timer pakai font Press Start 2P. Pure HTML/CSS/JS — zero framework, maximum soul.</p>
+                    </div>
+                  </div>
+                  <div class="acc-stack">
+                    <span class="acc-stack-tag">HTML/CSS</span>
+                    <span class="acc-stack-tag">Vanilla JS</span>
+                    <span class="acc-stack-tag">Google Maps</span>
+                    <span class="acc-stack-tag">Press Start 2P</span>
+                    <span class="acc-stack-tag">OG Meta</span>
+                  </div>
+                  <div class="acc-actions">
+                    <a href="#" class="acc-btn ab-demo" onclick="event.stopPropagation()">Live Demo ↗</a>
+                    <a href="https://github.com/RXSofc" target="_blank" class="acc-btn ab-gh" onclick="event.stopPropagation()">GitHub →</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="acc-item reveal reveal-delay-3" id="ac4">
+        <div class="acc-float">
+          <div class="acc-card" onclick="toggleAcc('ac4')">
+            <div class="acc-tab"><span class="acc-tab-dot"></span>Portfolio Experiment</div>
+            <div class="acc-header">
+              <span class="acc-num">04</span>
+              <span class="acc-divider"></span>
+              <div class="acc-header-text">
+                <div class="acc-name">Corrupted Manuscript</div>
+                <span class="acc-cat-pill"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/></svg> Portfolio</span>
+              </div>
+              <div class="acc-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></div>
+            </div>
+            <div class="acc-body-wrap">
+              <div class="acc-body-inner">
+                <div class="acc-body">
+                  <div class="acc-body-top">
+                    <div class="acc-emoji-wrap"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></div>
+                    <div class="acc-desc-block">
+                      <div class="acc-desc-title">Corrupted Manuscript Portfolio</div>
+                      <p class="acc-desc">Portfolio personal dengan experimental CRT barrel distortion via WebGL/SVG filters. Melewati iterasi: "Dead Signal" CRT-phosphor concept, "Split Identity" dual-pane layout kontraskan sisi literary vs technical. Karena developer portfolio tidak boleh kelihatan seperti developer portfolio lainnya.</p>
+                    </div>
+                  </div>
+                  <div class="acc-stack">
+                    <span class="acc-stack-tag">WebGL</span>
+                    <span class="acc-stack-tag">SVG Filters</span>
+                    <span class="acc-stack-tag">CRT Aesthetic</span>
+                    <span class="acc-stack-tag">Vanilla JS</span>
+                    <span class="acc-stack-tag">Split Identity</span>
+                  </div>
+                  <div class="acc-actions">
+                    <a href="#" class="acc-btn ab-demo" onclick="event.stopPropagation()">Live Demo ↗</a>
+                    <a href="https://github.com/RXSofc" target="_blank" class="acc-btn ab-gh" onclick="event.stopPropagation()">GitHub →</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================
+     EXPERIENCE
+============================ -->
+<section id="experience">
+  <div class="container">
+    <div class="section-label reveal"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg> Journey</div>
+    <h2 class="exp-h2 reveal">How I Got <span style="color:var(--accent)">Here</span></h2>
+
+    <div class="exp-timeline">
+
+      <div class="exp-item reveal">
+        <div class="exp-card">
+          <div class="exp-date">2024 — Present</div>
+          <h3 class="exp-role">Creative Front-End Developer</h3>
+          <p class="exp-org">Evil Void Team (EV TEAM) — Self-directed</p>
+          <p class="exp-desc">
+            Building experimental web projects under EV TEAM branding. Portfolio sites,
+            real-time chat apps, digital invitations, CLI tooling. Iterating obsessively
+            until the output looks like nothing else on the internet.
+          </p>
+        </div>
+      </div>
+
+      <div class="exp-item reveal reveal-delay-1">
+        <div class="exp-card">
+          <div class="exp-date">2023 — Present</div>
+          <h3 class="exp-role">English Literature Student</h3>
+          <p class="exp-org">Program Studi Sastra Inggris — UKRI, Bandung</p>
+          <p class="exp-desc">
+            Studying language, literature, and critical analysis. The literary sensibility
+            directly feeds the aesthetic decision-making in code. Text is architecture.
+            Story is UX. Poetry is just minimalist documentation.
+          </p>
+        </div>
+      </div>
+
+      <div class="exp-item reveal reveal-delay-2">
+        <div class="exp-card">
+          <div class="exp-date">2022 — 2023</div>
+          <h3 class="exp-role">Administrative & Grade Management Support</h3>
+          <p class="exp-org">School Context — PJOK Class Records</p>
+          <p class="exp-desc">
+            Managing and building Excel grade recap sheets for Physical Education (PJOK) classes.
+            Multi-sheet workbooks from scratch with precise formatting requirements.
+            Proof that spreadsheets can be engineered, not just filled in.
+          </p>
+        </div>
+      </div>
+
+      <div class="exp-item reveal reveal-delay-3">
+        <div class="exp-card">
+          <div class="exp-date">2021 — Origin</div>
+          <h3 class="exp-role">Self-taught Developer</h3>
+          <p class="exp-org">The Bedroom. The Terminal. The Internet.</p>
+          <p class="exp-desc">
+            No bootcamp. No CS degree. Just curiosity, Stack Overflow, bad code that slowly
+            became less bad, and the conviction that the web should be weirder and more
+            beautiful than it currently is.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================
+     CONTACT
+============================ -->
+<section id="contact">
+  <div class="container">
+    <div class="contact-card reveal">
+      <div class="contact-tag">✦ Hit me up</div>
+      <h2 class="contact-h2">Let's Build<br>Something <span>Cool</span></h2>
+      <p class="contact-p">Got a project? A weird idea? A problem that needs a creative solution?<br>Contact me. Let's make something the internet hasn't seen yet.</p>
+      <div class="contact-links">
+        <a href="rxsofc@gmail.com" class="contact-btn cb-email">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><rect x="2" y="4" width="20" height="16" rx="3"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+          Email
+        </a>
+        <a href="https://github.com/RXSofc" target="_blank" class="contact-btn cb-github">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"/></svg>
+          GitHub
+        </a>
+        <a href="https://linkedin.com" target="_blank" class="contact-btn cb-linkedin">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+          LinkedIn
+        </a>
+        <a href="https://wa.me/62" target="_blank" class="contact-btn cb-wa">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+          WhatsApp
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================
+     FOOTER
+============================ -->
+<footer>
+  <div class="container">
+    <p>Built with <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 8h1a4 4 0 1 1 0 8h-1"/><path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V8z"/><line x1="6" y1="2" x2="6" y2="4"/><line x1="10" y1="2" x2="10" y2="4"/><line x1="14" y1="2" x2="14" y2="4"/></svg> and existential dread by <span>Ariiq (RXSofc)</span> · Indonesia · 2022</p>
+  </div>
+</footer>
+
+<!-- ============================
+     JAVASCRIPT
+============================ -->
+
+  <script src="script.js"></script>
+</body>
+</html>
